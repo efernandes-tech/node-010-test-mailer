@@ -2,12 +2,15 @@
 
 const robots = {
   robotSenderMailer: require("./robots/robotSenderMailer.js"),
+  robotTemplater: require("./robots/robotTemplater.js"),
 };
 
 async function start() {
   console.log("index.js - begin");
 
-  await robots.robotSenderMailer();
+  const t = await robots.robotTemplater();
+
+  await robots.robotSenderMailer(t);
 
   console.log("index.js - end");
 

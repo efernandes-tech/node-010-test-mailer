@@ -2,7 +2,7 @@
 
 const nodemailer = require("nodemailer");
 
-async function robot() {
+async function robot(template) {
   console.log("robotSenderMailer() - begin");
 
   const transporter = await nodemailer.createTransport({
@@ -19,7 +19,7 @@ async function robot() {
     from: "edersonlrf.dbc@gmail.com",
     to: "edersonlrf.dbc@gmail.com",
     subject: "Email Test",
-    html: "<h1>Test</h1><p>only test!</p>",
+    html: template,
   };
 
   try {
