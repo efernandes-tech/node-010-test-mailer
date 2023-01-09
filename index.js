@@ -1,27 +1,17 @@
-const nodemailer = require("nodemailer");
-require("dotenv").config();
+// .index.js
 
-const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 465,
-  secure: true,
-  auth: {
-    user: process.env.MAIL_USER,
-    pass: process.env.MAIL_PASS,
-  },
-});
-
-const mailOptions = {
-  from: "edersonlrf.dbc@gmail.com",
-  to: "edersonlrf.dbc@gmail.com",
-  subject: "Email Test",
-  html: "<h1>Test</h1><p>only test!</p>",
+const robots = {
+  robotSenderMailer: require("./robots/robotSenderMailer.js"),
 };
 
-transporter.sendMail(mailOptions, function (error, info) {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log("E-mail sent: " + info.response);
-  }
-});
+async function start() {
+  console.log("index.js - begin");
+
+  await robots.robotSenderMailer();
+
+  console.log("index.js - end");
+
+  process.exit(1);
+}
+
+start();
